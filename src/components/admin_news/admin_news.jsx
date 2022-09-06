@@ -10,7 +10,7 @@ function AdminNews() {
                 return response.json();
             })
             .then((data) => {
-                setNews(data)
+                setNews(data.reverse())
             });
     }, [])
     console.log(news);

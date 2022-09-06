@@ -10,7 +10,7 @@ function AnnouncementsAdmin() {
                 return response.json();
             })
             .then((data) => {
-                setAnnouncements(data)
+                setAnnouncements(data.reverse())
             });
     }, [])
     return (
