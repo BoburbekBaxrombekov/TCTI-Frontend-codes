@@ -12,7 +12,7 @@ function News() {
                 return response.json();
             })
             .then((data) => {
-                setNews(data.reverse())
+                setNews(data)
             });
     }, [])
     const [currentItems, setCurrentItems] = useState([]);

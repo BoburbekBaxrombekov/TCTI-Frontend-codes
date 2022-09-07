@@ -12,7 +12,6 @@ function Media() {
                 setMedia(data.reverse())
             });
     }, [])
-    console.log(media);
     return (
         <>
             <div className="container-fluid media_wrapper">

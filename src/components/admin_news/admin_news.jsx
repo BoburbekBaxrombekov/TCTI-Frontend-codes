@@ -10,7 +10,7 @@ function AdminNews() {
                 return response.json();
             })
             .then((data) => {
-                setNews(data.reverse())
+                setNews(data)
             });
     }, [])
     console.log(news);
@@ -46,7 +46,7 @@ function AdminNews() {
                                             <th scope="col">Delete</th>
                                         </tr>
                                     </thead>
-                                    {news.reverse().filter((val) => {
+                                    {news.filter((val) => {
                                         if (searchTerm == "") {
                                             return val
                                         } else if (val.title_uz.toLowerCase().includes(searchTerm.toLowerCase())) {

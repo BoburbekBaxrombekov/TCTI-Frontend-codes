@@ -9,7 +9,7 @@ function AdminPages() {
                 return response.json();
             })
             .then((data) => {
-                setPages(data.reverse())
+                setPages(data)
             });
     }, [])
     console.log(pages);
@@ -40,7 +40,7 @@ function AdminPages() {
                                             <th scope="col" colspan="2">Sozlamalar </th>
                                         </tr>
                                     </thead>
-                                    {pages.reverse().filter((val) => {
+                                    {pages.filter((val) => {
                                         if (searchTerm == "") {
                                             return val
                                         } else if (val.section_name_uz.toLowerCase().includes(searchTerm.toLowerCase())) {

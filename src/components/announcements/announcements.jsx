@@ -12,7 +12,7 @@ function Announcements() {
                 return response.json();
             })
             .then((data) => {
-                setAnnouncements(data.reverse())
+                setAnnouncements(data)
             });
     }, [])
     const [currentItems, setCurrentItems] = useState([]);

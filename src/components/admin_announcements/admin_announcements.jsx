@@ -10,7 +10,7 @@ function AnnouncementsAdmin() {
                 return response.json();
             })
             .then((data) => {
-                setAnnouncements(data.reverse())
+                setAnnouncements(data)
             });
     }, [])
     return (
@@ -43,7 +43,7 @@ function AnnouncementsAdmin() {
                                             <th scope="col">DELETE </th>
                                         </tr>
                                     </thead>
-                                    {announcements.reverse().filter((val) => {
+                                    {announcements.filter((val) => {
                                         if (searchTerm == "") {
                                             return val
                                         } else if (val.title_uz.toLowerCase().includes(searchTerm.toLowerCase())) {
