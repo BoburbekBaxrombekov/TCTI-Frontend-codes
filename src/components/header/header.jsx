@@ -17,94 +17,80 @@ import { useState, useEffect, useContext, useRef } from "react";
 import { Context as LanguageContext } from "../../Context/Language";
 import context from "../../lang/lang";
 import { Link } from "react-router-dom";
+import MAIN_API from '../api'
 
 function Header() {
   const innerMenu = useRef();
   const header = useRef();
   const { lang, setLang } = useContext(LanguageContext);
   const [allSc, setAllSc] = useState([]);
+  const [consistsSc, setConsistsSc] = useState([]);
+  const [subStudentSc, setSubStudentSc] = useState([]);
+  const [studentSc, setStudentSc] = useState([]);
+  const [workingSc, setWorkingSc] = useState([]);
+  const [contactsSc, setContactsSc] = useState([]);
+  const [interactiveSc, setInteractiveSc] = useState([]);
+  const [corruptionSc, setCorruptionSc] = useState([]);
+  const [allList, setAllList] = useState([]);
+  const [show, setShow] = useState(false);
   useEffect(() => {
-    fetch("http://tcti.uz/api/sub_categories/all_sc")
+    fetch(`${MAIN_API}/sub_categories/all_sc`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setAllSc(data);
       });
-  }, []);
-  const [consistsSc, setConsistsSc] = useState([]);
-  useEffect(() => {
-    fetch("http://tcti.uz/api/sub_categories/consists_sc")
+      fetch(`${MAIN_API}/sub_categories/consists_sc`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setConsistsSc(data);
       });
-  }, []);
-  const [subStudentSc, setSubStudentSc] = useState([]);
-  useEffect(() => {
-    fetch("http://tcti.uz/api/sub_categories/sub_student_sc")
+      fetch(`${MAIN_API}/sub_categories/sub_student_sc`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setSubStudentSc(data);
       });
-  }, []);
-  const [studentSc, setStudentSc] = useState([]);
-  useEffect(() => {
-    fetch("http://tcti.uz/api/sub_categories/student_sc")
+      fetch(`${MAIN_API}/sub_categories/student_sc`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setStudentSc(data);
       });
-  }, []);
-  const [workingSc, setWorkingSc] = useState([]);
-  useEffect(() => {
-    fetch("http://tcti.uz/api/sub_categories/working_sc")
+      fetch(`${MAIN_API}/sub_categories/working_sc`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setWorkingSc(data);
       });
-  }, []);
-  const [contactsSc, setContactsSc] = useState([]);
-  useEffect(() => {
-    fetch("http://tcti.uz/api/sub_categories/contacts_sc")
+      fetch(`${MAIN_API}/sub_categories/contacts_sc`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setContactsSc(data);
       });
-  }, []);
-  const [interactiveSc, setInteractiveSc] = useState([]);
-  useEffect(() => {
-    fetch("http://tcti.uz/api/sub_categories/interactive_sc")
+      fetch(`${MAIN_API}/sub_categories/interactive_sc`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setInteractiveSc(data);
       });
-  }, []);
-  const [corruptionSc, setCorruptionSc] = useState([]);
-  useEffect(() => {
-    fetch("http://tcti.uz/api/sub_categories/corruption_sc")
+      fetch(`${MAIN_API}/sub_categories/corruption_sc`)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setCorruptionSc(data);
       });
-  }, []);
-  const [allList, setAllList] = useState([]);
-  useEffect(() => {
-    fetch("http://tcti.uz/api/sub_categories/all")
+      fetch(`${MAIN_API}/sub_categories/all`)
       .then((response) => {
         return response.json();
       })
@@ -112,7 +98,7 @@ function Header() {
         setAllList(data);
       });
   }, []);
-  const [show, setShow] = useState(false);
+  
   const showDropdown = (e) => {
     setShow(!show);
   };
@@ -146,7 +132,7 @@ function Header() {
               header.current.classList.toggle("fixed_block");
               if (
                 burgerIcon.current.src ===
-                "http://localhost:3000/static/media/burger_icon.ab3ea912d85a390aeef9090cd37608e7.svg"
+                `${MAIN_API}/static/media/burger_icon.ab3ea912d85a390aeef9090cd37608e7.svg`
               ) {
                 console.log(IconClose);
                 burgerIcon.current.setAttribute("src", IconClose);

@@ -2,13 +2,14 @@ import { useState, useEffect, useContext } from 'react';
 import { Context as LanguageContext } from '../../Context/Language';
 import context from '../../lang/lang';
 import { useParams } from 'react-router-dom'
+import MAIN_API from '../api';
 
 function SearchedPage() {
     const { lang, setLang } = useContext(LanguageContext);
     const { question } = useParams()
     const [page, setPage] = useState([])
     useEffect(() => {
-        fetch(`http://tcti.uz/api/sub_categories/find/${question}`)
+        fetch(`${MAIN_API}/sub_categories/find/${question}`)
             .then((response) => {
                 return response.json();
             })
@@ -16,7 +17,6 @@ function SearchedPage() {
                 setPage(data)
             });
     }, [])
-    console.log(page);
     return (
         <>
             <div class="container-fluid mt-5">

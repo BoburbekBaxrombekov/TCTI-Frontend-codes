@@ -2,21 +2,19 @@ import { useState, useEffect } from 'react'
 import newsIcon from '../../images/newspaper-solid.png'
 import pageIcon from '../../images/file-lines-solid.png'
 import announcementIcon from '../../images/scroll-solid.png'
+import MAIN_API from '../api'
 
 function Statistics() {
     const [news, setNews] = useState([])
     useEffect(() => {
-        fetch('http://tcti.uz/api/news/all')
+        fetch(`${MAIN_API}/news/all`)
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
                 setNews(data)
             });
-    }, [])
-    const [announcements, setAnnouncements] = useState([])
-    useEffect(() => {
-        fetch('http://tcti.uz/api/announcements/all')
+        fetch(`${MAIN_API}/announcements/all`)
             .then((response) => {
                 return response.json();
             })
@@ -24,15 +22,21 @@ function Statistics() {
                 setAnnouncements(data)
             });
     }, [])
-    const [pages, setPages] = useState([])
+    const [announcements, setAnnouncements] = useState([])
     useEffect(() => {
-        fetch('http://tcti.uz/api/sub_categories/all')
+
+    fetch(`${MAIN_API}/sub_categories/all`)
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
                 setPages(data)
             });
+        
+    }, [])
+    const [pages, setPages] = useState([])
+    useEffect(() => {
+        
     }, [])
     return (
         <>

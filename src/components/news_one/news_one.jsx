@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Context as LanguageContext } from '../../Context/Language';
 import context from '../../lang/lang';
 import { useParams } from 'react-router-dom'
+import MAIN_API from '../api'
 
 function NewsOne() {
     const { lang, setLang } = useContext(LanguageContext);
@@ -9,7 +10,7 @@ function NewsOne() {
     const [found, setFound] = useState([])
     const [news, setNews] = useState([])
     useEffect(() => {
-        fetch(`http://tcti.uz/api/news/one/${id}`)
+        fetch(`${MAIN_API}/news/one/${id}`)
             .then((response) => {
                 return response.json();
             })
@@ -18,7 +19,7 @@ function NewsOne() {
             });
     }, [])
     useEffect(() => {
-        fetch('http://tcti.uz/api/news/all')
+        fetch(`${MAIN_API}/news/all`)
             .then((response) => {
                 return response.json();
             })

@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
+import MAIN_API from '../api'
 
 
 function AnnouncementsEditAdmin() {
@@ -14,7 +15,7 @@ function AnnouncementsEditAdmin() {
     const { id } = useParams()
     const [announcements, setAnnouncements] = useState([])
     useEffect(() => {
-        fetch(`http://tcti.uz/api/announcements/one/${id}`)
+        fetch(`${MAIN_API}/announcements/one/${id}`)
             .then((response) => {
                 return response.json();
             })
@@ -42,7 +43,7 @@ function AnnouncementsEditAdmin() {
                                     {announcements.map(item => (
                                         <form autoComplete="off" class="mt-2" onSubmit={(e) => {
                                             e.preventDefault()
-                                            fetch(`http://tcti.uz/api/announcements/edit`, {
+                                            fetch(`${MAIN_API}/announcements/edit`, {
                                                 method: 'POST',
                                                 headers: {
                                                     'Accept': 'application/json',

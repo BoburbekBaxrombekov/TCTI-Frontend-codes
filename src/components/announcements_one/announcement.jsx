@@ -3,6 +3,7 @@ import { Context as LanguageContext } from '../../Context/Language';
 import context from '../../lang/lang';
 import { useParams } from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react';
+import MAIN_API from '../api'
 
 function AnnouncementsOne() {
     const { lang, setLang } = useContext(LanguageContext);
@@ -10,7 +11,7 @@ function AnnouncementsOne() {
     const [found, setFound] = useState([])
     const [news, setNews] = useState([])
     useEffect(() => {
-        fetch(`http://tcti.uz/api/announcements/one/${id}`)
+        fetch(`${MAIN_API}/announcements/one/${id}`)
             .then((response) => {
                 return response.json();
             })
@@ -19,7 +20,7 @@ function AnnouncementsOne() {
             });
     }, [])
     useEffect(() => {
-        fetch('http://tcti.uz/api/announcements/all')
+        fetch(`${MAIN_API}/announcements/all`)
             .then((response) => {
                 return response.json();
             })

@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react';
+import MAIN_API from '../api';
 function AddAnnouncementsForm() {
     const announcements_title_uz = useRef()
     const announcements_title_ru = useRef()
@@ -27,7 +28,7 @@ function AddAnnouncementsForm() {
                                     <h4 class="mt-0 header-title">Yangi E`lon qo'shish</h4>
                                     <form autocomplete="off" onSubmit={(e) => {
                                         e.preventDefault()
-                                        fetch('http://tcti.uz/api/announcements/add', {
+                                        fetch(`${MAIN_API}/announcements/add`, {
                                             method: 'POST',
                                             headers: {
                                                 'Accept': 'application/json',
@@ -42,7 +43,8 @@ function AddAnnouncementsForm() {
                                                     body_ru: announcements_body_ru.current.getContent(),
                                                     title_en: announcements_title_en.current.value,
                                                     body_en: announcements_body_en.current.getContent(),
-                                                    date: announcements_date.current.value
+                                                    date: announcements_date.current.value,
+                                                    sort: announcements_date.current.valueAsNumber
                                                 }
                                             )
                                         }).then(function (res) { return res.json(); })
@@ -146,7 +148,7 @@ function AddAnnouncementsForm() {
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">E`lon sanasi</label>
                                             <div class="col-sm-10">
-                                                <input ref={announcements_date} class="form-control Input_elon_news_date" type="text" name="image" />
+                                                <input ref={announcements_date} class="form-control Input_elon_news_date" type="date" name="image" />
                                             </div>
                                         </div>
 

@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { Editor } from '@tinymce/tinymce-react';
 import { Link } from 'react-router-dom';
-
+import MAIN_API from '../api';
 
 function AddPageForm() {
     const page_name_uz = useRef()
@@ -46,7 +46,7 @@ function AddPageForm() {
                                             menu_id: page_main_id.current.value,
                                             filter_id: page_filter_id.current.value
                                         }
-                                        fetch('http://tcti.uz/api/sub_categories/add', {
+                                        fetch(`${MAIN_API}/sub_categories/add`, {
                                             method: 'POST',
                                             headers: {
                                                 'Accept': 'application/json',

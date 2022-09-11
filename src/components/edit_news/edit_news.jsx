@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
+import MAIN_API from '../api'
 
 function EditNewsForm() {
     const news_title_uz = useRef()
@@ -13,7 +14,7 @@ function EditNewsForm() {
     const { id } = useParams()
     const [news, setNews] = useState([])
     useEffect(() => {
-        fetch(`http://tcti.uz/api/news/one/${id}`)
+        fetch(`${MAIN_API}/news/one/${id}`)
             .then((response) => {
                 return response.json();
             })
@@ -39,7 +40,7 @@ function EditNewsForm() {
                                 {news.map(item => (
                                     <form autoComplete="off" class="mt-2" onSubmit={(e) => {
                                         e.preventDefault()
-                                        fetch(`http://tcti.uz/api/news/edit`, {
+                                        fetch(`${MAIN_API}/news/edit`, {
                                             method: 'POST',
                                             headers: {
                                                 'Accept': 'application/json',

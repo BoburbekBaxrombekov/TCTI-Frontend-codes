@@ -1,10 +1,10 @@
 import { Helmet } from "react-helmet";
 import { useEffect, useState } from 'react'
-
+import MAIN_API from '../api'
 function Media() {
     const [media, setMedia] = useState([])
     useEffect(() => {
-        fetch('http://tcti.uz/api/media/all')
+        fetch(`${MAIN_API}/media/all`)
             .then((response) => {
                 return response.json();
             })
@@ -19,14 +19,14 @@ function Media() {
                     {media.map(item => (
                         <li key={item.id} className="media_item">
                             <div className="media_img">
-                                <img src={`http://tcti.uz/api/getfiles/${item.path}`} alt="" width={300} height={200} />
+                                <img src={`${MAIN_API}/getfiles/${item.path}`} alt="" width={300} height={200} />
                             </div>
                             <div className="media_body mt-3">
-                                <p><a href={`http://tcti.uz/api/getfiles/${item.path}`}>{`http://tcti.uz/api/getfiles/${item.path}`}</a>  </p>
+                                <p><a href={`${MAIN_API}/getfiles/${item.path}`}>{`${MAIN_API}/getfiles/${item.path}`}</a>  </p>
                                 <button className="btn-danger mt-3" onClick={() => {
                                     let answer = prompt("siz rostan o'chirmoqchimisiz? Y/N")
                                     if (answer == "Y") {
-                                        fetch('http://tcti.uz/api/media/delete', {
+                                        fetch(`${MAIN_API}/media/delete`, {
                                             method: 'DELETE',
                                             headers: {
                                                 'Accept': 'application/json',

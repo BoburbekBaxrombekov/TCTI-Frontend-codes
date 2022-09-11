@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-
+import MAIN_API from '../api';
 function AdminPages() {
     const [pages, setPages] = useState([])
     const [searchTerm, setSearchTerm] = useState([])
     useEffect(() => {
-        fetch('http://tcti.uz/api/sub_categories/all')
+        fetch(`${MAIN_API}/sub_categories/all`)
             .then((response) => {
                 return response.json();
             })
@@ -12,7 +12,6 @@ function AdminPages() {
                 setPages(data)
             });
     }, [])
-    console.log(pages);
     return (
         <>
             <div class="row pt-5 page_list">
@@ -58,7 +57,7 @@ function AdminPages() {
                                                     <button class="btn-danger delete_btn p-2 text-light" data-uuid="<%- i.id %>" onClick={() => {
                                                         let answer = prompt("siz rostan o'chirmoqchimisiz? Y/N")
                                                         if (answer == "Y") {
-                                                            fetch('http://tcti.uz/api/sub_categories/delete', {
+                                                            fetch(`${MAIN_API}/sub_categories/delete`, {
                                                                 method: 'DELETE',
                                                                 headers: {
                                                                     'Accept': 'application/json',

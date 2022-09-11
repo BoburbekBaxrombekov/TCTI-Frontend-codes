@@ -1,12 +1,13 @@
 import { useRef, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react';
+import MAIN_API from '../api'
 
 function EditPageForm() {
     const { id } = useParams()
     const [found, setFound] = useState([])
     useEffect(() => {
-        fetch(`http://tcti.uz/api/sub_categories/get/${id}`, {
+        fetch(`${MAIN_API}/sub_categories/get/${id}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -18,7 +19,6 @@ function EditPageForm() {
             })
 
     }, [])
-    console.log(found);
     const page_name_uz = useRef()
     const page_name_ru = useRef()
     const page_name_en = useRef()
@@ -64,7 +64,7 @@ function EditPageForm() {
                                             filter_id: page_filter_id.current.value,
                                             id: found.id
                                         }
-                                        fetch('http://tcti.uz/api/sub_categories/edit', {
+                                        fetch(`${MAIN_API}/sub_categories/edit`, {
                                             method: 'POST',
                                             headers: {
                                                 'Accept': 'application/json',

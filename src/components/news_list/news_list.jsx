@@ -2,12 +2,13 @@ import { useState, useEffect, useContext } from 'react';
 import { Context as LanguageContext } from '../../Context/Language';
 import context from '../../lang/lang';
 import ReactPaginate from 'react-paginate';
+import MAIN_API from '../api'
 
 function News() {
     const { lang, setLang } = useContext(LanguageContext);
     const [news, setNews] = useState([])
     useEffect(() => {
-        fetch('http://tcti.uz/api/news/all')
+        fetch(`${MAIN_API}/news/all`)
             .then((response) => {
                 return response.json();
             })

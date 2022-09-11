@@ -2,13 +2,14 @@ import { useState, useEffect, useContext } from 'react';
 import { Context as LanguageContext } from '../../Context/Language';
 import context from '../../lang/lang';
 import { useParams } from 'react-router-dom'
+import MAIN_API from '../api';
 
 function PageOpened() {
     const { lang, setLang } = useContext(LanguageContext);
     const { id } = useParams()
     const [page, setPage] = useState([])
     useEffect(() => {
-        fetch(`http://tcti.uz/api/sub_categories/get/${id}`)
+        fetch(`${MAIN_API}/sub_categories/get/${id}`)
             .then((response) => {
                 return response.json();
             })

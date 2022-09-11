@@ -21,7 +21,7 @@ function Login() {
 
                         <form class="form-horizontal m-t-30 el_form" onSubmit={(e) => {
                             e.preventDefault()
-                            fetch('http://tcti.uz/api/login', {
+                            fetch('http://localhost:3001/login', {
                                 method: 'POST',
                                 headers: {
                                     'Accept': 'application/json',

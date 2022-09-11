@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-
+import MAIN_API from "../api";
 
 function Upload_COMPONENT() {
     const imgRef = useRef()
@@ -45,7 +45,7 @@ function Upload_COMPONENT() {
                                     body: formData,
                                     redirect: 'follow'
                                 };
-                                fetch("http://tcti.uz/api/upload/add", requestOptions)
+                                fetch(`${MAIN_API}/upload/add`, requestOptions)
                                     .then(response => response.json())
                                     .then(result => {
                                         console.log(result);

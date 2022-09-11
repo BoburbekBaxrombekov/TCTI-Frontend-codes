@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { Editor } from '@tinymce/tinymce-react';
+import MAIN_API from '../api';
 // import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
 // import CKEditor from "@ckeditor/ckeditor5-react"
 // import parse from "html-react-parser"
@@ -31,7 +32,7 @@ function AddNewsForm() {
                                     <h4 class="mt-0 header-title">Yangi Xabar qo'shish</h4>
                                     <form onSubmit={(e) => {
                                         e.preventDefault()
-                                        fetch('http://tcti.uz/api/news/add', {
+                                        fetch(`${MAIN_API}/news/add`, {
                                             method: 'POST',
                                             headers: {
                                                 'Accept': 'application/json',
@@ -47,6 +48,7 @@ function AddNewsForm() {
                                                     title_en: news_title_en.current.value,
                                                     body_en: news_body_en.current.getContent(),
                                                     date: news_date.current.value,
+                                                    sort: news_date.current.valueAsNumber,
                                                 }
                                             )
                                         }).then(function (res) { return res.json(); })
@@ -149,7 +151,7 @@ function AddNewsForm() {
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Sana ni kiriting</label>
                                             <div class="col-sm-10">
-                                                <input ref={news_date} class="form-control Input_news_date" type="text" name="img" />
+                                                <input ref={news_date} class="form-control Input_news_date" type="date" name="img" />
                                             </div>
                                         </div>
                                         <a href="/api/news/all" class="button_sumbit_news btn btn-dark btn-sm float-right ml-3">Orqaga</a>

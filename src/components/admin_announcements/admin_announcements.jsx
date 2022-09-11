@@ -1,11 +1,11 @@
 import { useRef, useState, useEffect } from 'react'
-
+import MAIN_API from '../api';
 
 function AnnouncementsAdmin() {
     const [searchTerm, setSearchTerm] = useState([])
     const [announcements, setAnnouncements] = useState([])
     useEffect(() => {
-        fetch('http://tcti.uz/api/announcements/all')
+        fetch(`${MAIN_API}/announcements/all`)
             .then((response) => {
                 return response.json();
             })
@@ -60,7 +60,7 @@ function AnnouncementsAdmin() {
                                             <td class=""><a class="btn btn-danger button_delete_news bg-danger text-light" onClick={() => {
                                                 let answer = prompt("siz rostan o'chirmoqchimisiz? Y/N")
                                                 if (answer == "Y") {
-                                                    fetch('http://tcti.uz/api/announcements/delete', {
+                                                    fetch(`${MAIN_API}/announcements/delete`, {
                                                         method: 'DELETE',
                                                         headers: {
                                                             'Accept': 'application/json',

@@ -1,11 +1,12 @@
 import newsIcon from '../../images/newspaper-solid.png'
 import { useState, useEffect } from 'react';
+import MAIN_API from '../api';
 
 function AdminNews() {
     const [news, setNews] = useState([])
     const [searchTerm, setSearchTerm] = useState([])
     useEffect(() => {
-        fetch('http://tcti.uz/api/news/all')
+        fetch(`${MAIN_API}/news/all`)
             .then((response) => {
                 return response.json();
             })
@@ -13,7 +14,6 @@ function AdminNews() {
                 setNews(data)
             });
     }, [])
-    console.log(news);
     return (
         <div className='ml-5 admin_news_section'>
             <div class="row pt-5">
@@ -63,7 +63,7 @@ function AdminNews() {
                                             <td class=""><a class="btn btn-danger button_delete_news bg-danger text-light" onClick={() => {
                                                 let answer = prompt("siz rostan o'chirmoqchimisiz? Y/N")
                                                 if (answer == "Y") {
-                                                    fetch('http://tcti.uz/api/news/delete', {
+                                                    fetch(`${MAIN_API}/news/delete`, {
                                                         method: 'DELETE',
                                                         headers: {
                                                             'Accept': 'application/json',
